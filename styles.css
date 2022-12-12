@@ -1,0 +1,215 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: sans-serif;
+}
+
+iframe {
+  display: block;
+  position: absolute;
+  left: 0px;
+  border: 0;
+  width: 100%;
+  height: 100%; 
+  opacity: 0;
+  transition: opacity 0.5s 0.5s;
+}
+
+iframe.js-started {
+  opacity: 1;
+}
+
+.iframe-wrapper {
+  width: 970px;
+  height: 250px;
+  position: relative;
+  background: url(Image/background-@2x.jpg) no-repeat top left;
+  background-size: 100%;
+}
+
+.options {
+  position: absolute;
+  top: 114px;
+  left: 24px;
+  padding-left: 60px;
+}
+
+.texture {
+  display: block !important;
+  width: 100%;
+  height: 30px;
+  margin-bottom: 5px;
+}
+
+.texture input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.texture__swatch {
+  display: inline-block;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  box-shadow: -1px -1px 0 0px #FFF;
+  background-image: url(Image/gloss.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.texture__name {
+  position: relative;
+  top: -7px;
+  cursor: pointer;
+  font-size: 11px;
+  font-family: 'Peugeot', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: #FFF;
+}
+.texture__preview img
+{
+aspect-ratio: 1;
+max-height: 30px;
+max-width: 30px;
+border-radius: 100%;
+
+}
+.texture input:checked ~ .texture__name {
+  font-weight: bold;
+}
+
+.option--texture label {
+  display: none;
+}
+
+.tagline, .subtitle, .cta {
+  font-family: 'Peugeot', Arial, sans-serif;
+  color: #FFF;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.content .tagline {
+  position: absolute;
+  top: 36px;
+  left: 24px;
+  display: block;
+  letter-spacing: 2px;
+  font-size: 23px;
+  line-height: 1;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  position: absolute;
+  top: 88px;
+  left: 24px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.content .cta {
+  position: absolute;
+  top: 152px;
+  left: 778px;
+  display: block;
+  background: #21586c;
+  font-size: 16px;
+  font-family: 'Peugeot', Arial, sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 5px 35px;
+  color: #FFF;
+  border: 1px solid transparent;
+}
+
+.content a.cta:hover {
+  color: #fff;
+  background: #007edb;
+  border: 1px solid #007edb;
+}
+
+.logo {
+  position: absolute;
+  top: 54px;
+  left: 792px;
+}
+
+.hint {
+  background-repeat: no-repeat;
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+  margin: auto;
+  background-size: contain;
+  background-position: center;
+}
+
+.viewer-hint {
+  display: block;
+  width: 160px;
+  height: 100px;
+  text-align: center;
+  opacity: 1;
+  transition: opacity 0.2s;
+  position: absolute;
+  top: 80px;
+  left: 25%;
+  z-index: 1;
+  font-size: 13px;
+  color: #ffffff;
+  text-shadow: 0 0 5px #000000;
+  pointer-events: none !important;
+  -webkit-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+}
+
+.viewer-movehint {
+  opacity: 1;
+  animation: clickhint 3s infinite ease-in-out;
+  -webkit-animation: clickhint 3s infinite ease-in-out;
+  text-align: center;
+  pointer-events: none;
+  position: absolute;
+  background-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.3) 0%, transparent 66%);
+  background-position: center center;
+}
+
+.viewer-movehint .icon {
+  display: inline-block;
+  width: 80px;
+  height: 48px;
+  background: transparent url(Image/move.png) no-repeat center center;
+  background-size: 55px 33px;
+}
+
+.viewer-movehint .label {
+  display: block;
+  font-size: 12px;
+  text-indent: 0.5ex;
+  font-family: Arial, sans-serif;
+}
+
+@keyframes clickhint {
+  0% {
+      left: -20%;
+  }
+
+  50% {
+      left: 0%;
+  }
+
+  100% {
+      left: -20%;
+  }
+}

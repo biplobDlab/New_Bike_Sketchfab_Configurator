@@ -1,0 +1,348 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Dreamerzlab</title>
+        <script type="text/javascript" defer="true" src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.0.js"></script>
+        <link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css'>
+        <style type="text/css" scoped>
+            /* @font-face {
+                font-family: Peugeot;
+                src: url("fonts/Peugeot.otf") format("opentype");
+            }
+
+            @font-face {
+                font-family: Peugeot;
+                font-weight: bold;
+                src: url("fonts/Peugeot-Bold.otf") format("opentype");
+            } */
+
+            html, body {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+                font-family: sans-serif;
+            }
+
+            iframe {
+                display: block;
+                position: absolute;
+                left: 0px;
+                border: 0;
+                width: 100%;
+                height: 100%; 
+                opacity: 0;
+                transition: opacity 0.5s 0.5s;
+            }
+
+            iframe.js-started {
+                opacity: 1;
+            }
+
+            .iframe-wrapper {
+                width: 970px;
+                height: 250px;
+                position: relative;
+                background: url(Image/background-@2x.jpg) no-repeat top left;
+                background-size: 100%;
+            }
+
+            .options {
+                position: absolute;
+                top: 114px;
+                left: 24px;
+                padding-left: 60px;
+            }
+
+            .texture {
+                display: block !important;
+                width: 100%;
+                height: 30px;
+                margin-bottom: 5px;
+            }
+
+            .texture input {
+                position: absolute;
+                opacity: 0;
+                pointer-events: none;
+            }
+
+            .texture__swatch {
+                display: inline-block;
+                cursor: pointer;
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                box-shadow: -1px -1px 0 0px #FFF;
+                background-image: url(Image/gloss.png);
+                background-repeat: no-repeat;
+                background-position: center center;
+            }
+
+            .texture__name {
+                position: relative;
+                top: -7px;
+                cursor: pointer;
+                font-size: 11px;
+                font-family: 'Peugeot', Arial, sans-serif;
+                -webkit-font-smoothing: antialiased;
+                color: #FFF;
+            }
+            .texture__preview img
+            {
+              aspect-ratio: 1;
+              max-height: 30px;
+              max-width: 30px;
+              border-radius: 100%;
+
+            }
+            .texture input:checked ~ .texture__name {
+                font-weight: bold;
+            }
+
+            .option--texture label {
+                display: none;
+            }
+
+            .tagline, .subtitle, .cta {
+                font-family: 'Peugeot', Arial, sans-serif;
+                color: #FFF;
+                text-decoration: none;
+                -webkit-font-smoothing: antialiased;
+            }
+
+            .content .tagline {
+                position: absolute;
+                top: 36px;
+                left: 24px;
+                display: block;
+                letter-spacing: 2px;
+                font-size: 23px;
+                line-height: 1;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+
+            .subtitle {
+                position: absolute;
+                top: 88px;
+                left: 24px;
+                font-size: 11px;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+            }
+
+            .content .cta {
+                position: absolute;
+                top: 152px;
+                left: 778px;
+                display: block;
+                background: #21586c;
+                font-size: 16px;
+                font-family: 'Peugeot', Arial, sans-serif;
+                text-transform: uppercase;
+                text-decoration: none;
+                padding: 5px 35px;
+                color: #FFF;
+                border: 1px solid transparent;
+            }
+
+            .content a.cta:hover {
+                color: #fff;
+                background: #007edb;
+                border: 1px solid #007edb;
+            }
+
+            .logo {
+                position: absolute;
+                top: 54px;
+                left: 792px;
+            }
+
+            .hint {
+                background-repeat: no-repeat;
+                width: 50%;
+                height: 50%;
+                position: absolute;
+                left: 0%;
+                right: 0%;
+                top: 0%;
+                bottom: 0%;
+                margin: auto;
+                background-size: contain;
+                background-position: center;
+            }
+
+            .viewer-hint {
+                display: block;
+                width: 160px;
+                height: 100px;
+                text-align: center;
+                opacity: 1;
+                transition: opacity 0.2s;
+                position: absolute;
+                top: 80px;
+                left: 25%;
+                z-index: 1;
+                font-size: 13px;
+                color: #ffffff;
+                text-shadow: 0 0 5px #000000;
+                pointer-events: none !important;
+                -webkit-transform: translate(-50%, 0);
+                transform: translate(-50%, 0);
+            }
+
+            .viewer-movehint {
+                opacity: 1;
+                animation: clickhint 3s infinite ease-in-out;
+                -webkit-animation: clickhint 3s infinite ease-in-out;
+                text-align: center;
+                pointer-events: none;
+                position: absolute;
+                background-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.3) 0%, transparent 66%);
+                background-position: center center;
+            }
+
+            .viewer-movehint .icon {
+                display: inline-block;
+                width: 80px;
+                height: 48px;
+                background: transparent url(Image/move.png) no-repeat center center;
+                background-size: 55px 33px;
+            }
+
+            .viewer-movehint .label {
+                display: block;
+                font-size: 12px;
+                text-indent: 0.5ex;
+                font-family: Arial, sans-serif;
+            }
+
+            @keyframes clickhint {
+                0% {
+                    left: -20%;
+                }
+
+                50% {
+                    left: 0%;
+                }
+
+                100% {
+                    left: -20%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="iframe-wrapper">
+            <iframe class="embed" src="" id="api-frame" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="vr"></iframe>
+            <div class="content">
+                <a id="clickArea2" href="https://dreamerzlab.com/" target="_blank" rel="noopener noreferrer nofollow" class="tagline">
+                    Suzuki Bike
+                <br>RO7
+            
+                </a>
+                <a id="clickArea4" href="https://dreamerzlab.com/" target="_blank" rel="noopener noreferrer nofollow" class="subtitle">Feel the speed
+            </a>
+                <div class="options"></div>
+                <a id="clickArea" href="https://dreamerzlab.com/" target="_blank" rel="noopener noreferrer nofollow" class="logo">
+                    <img src="Image/CompanyLogo.png" width="100" height="100" alt="Dreamerzlab">
+                </a>
+                <a id="clickArea3" href="https://dreamerzlab.com/" target="_blank" rel="noopener noreferrer nofollow" class="cta">Follow</a>
+            </div>
+            <div class="hint viewer-hint">
+                <div class="viewer-movehint">
+                    <i class="icon"></i>
+                    <span class="label">
+                        Drag
+                    </span>
+                </div>
+            </div>
+        </div>
+    </body>
+    
+    <script defer="true" type="text/javascript" src="./SketchfabConfigurator-1.0.6.js"></script>
+    <script type="text/javascript">
+
+        window.defaultConfig = {
+            "model": "d60856c9beb54e11b0d1c0f992eaf3c7",
+            "params": {
+                "autospin": -0.1,
+                "camera": 0,
+                "double_click": 0,
+                "orbit_constraint_pan": 1,
+                "preload": 0,
+                "transparent": 1,
+                "ui_controls": 0,
+                "ui_hint": 0,
+                "ui_infos": 0,
+                "ui_stop": 0,
+                "watermark": 0,
+                "graph_optimizer": 1
+            },
+            "config": [
+            {
+                "name": "Body Paint",
+                "material": "BodyPaint",
+                "channels": [
+                    "AlbedoPBR"
+                ],
+                "type": "texture",
+                "options": [
+                    {
+                        "name": "Blue",
+                        "url": "https://cdn.pixabay.com/photo/2016/06/02/02/33/triangles-1430105_960_720.png"
+                    },
+                    {
+                        "name": "Black",
+                        "url": "https://cdn.pixabay.com/photo/2015/12/09/01/02/mandalas-1084082_960_720.jpg"
+                    },
+                    {
+                        "name": "Red",
+                        "url": "https://cdn.pixabay.com/photo/2017/08/15/08/23/stars-2643089_960_720.jpg"
+                    }
+                ],
+                "default": -1
+            }]
+        };
+
+        var iframeEl = document.getElementById('api-frame');
+        var optionsEl = document.querySelector('.options');
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var configurator = new SketchfabConfigurator.Configurator(iframeEl,optionsEl);
+        });
+    </script>
+    <script type="text/javascript">
+        //<![CDATA[
+        document.addEventListener('DOMContentLoaded', function() {
+            var parentEl = document.querySelector('.embed').parentNode;
+
+            var fadeHintOut = function() {
+                function fadeOut(el) {
+                    el.style.opacity = 1;
+
+                    var last = +new Date();
+                    var tick = function() {
+                        var t = new Date();
+                        el.style.opacity = +el.style.opacity - (t - last) / 400;
+                        last = +t;
+
+                        if (+el.style.opacity > 0) {
+                            (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+                        }
+                    };
+
+                    tick();
+                }
+
+                fadeOut(parentEl.querySelector('.hint'));
+                parentEl.removeEventListener('mouseover', fadeHintOut);
+            };
+
+            parentEl.addEventListener('mouseover', fadeHintOut);
+        });
+        //]]>
+    </script>
+</html>
