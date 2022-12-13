@@ -97,6 +97,14 @@
               border-radius: 100%;
 
             }
+            texture__preview div
+            {
+              aspect-ratio: 1;
+              max-height: 30px;
+              max-width: 30px;
+              border-radius: 100%;
+
+            }
             .texture input:checked ~ .texture__name {
                 font-weight: bold;
             }
@@ -291,19 +299,22 @@
                 "type": "texture",
                 "options": [
                     {
-                        "name": "Blue",
-                        "url": "https://cdn.pixabay.com/photo/2016/06/02/02/33/triangles-1430105_960_720.png"
+                        "name": "Gray",
+                        "url": "./Image/Bag_BaseColor_Gray_Default.png",
+                        "url2": "./Image/Gray.png"
                     },
                     {
-                        "name": "Black",
-                        "url": "https://cdn.pixabay.com/photo/2015/12/09/01/02/mandalas-1084082_960_720.jpg"
+                        "name": "Black",                        
+                        "url": "./Image/Bag_BaseColor_Black_V2.png",
+                        "url2": "./Image/Black.png"
                     },
                     {
-                        "name": "Red",
-                        "url": "https://cdn.pixabay.com/photo/2017/08/15/08/23/stars-2643089_960_720.jpg"
+                        "name": "White",
+                        "url": "./Image/Bag_BaseColor_White_V1.png",
+                        "url2": "./Image/White.png"
                     }
                 ],
-                "default": -1
+                "default": 0
             }]
         };
 
@@ -344,5 +355,9 @@
             parentEl.addEventListener('mouseover', fadeHintOut);
         });
         //]]>
+    </script>
+    <script type="text/javascript">
+        //var buttons = document.getElementById("")
+
     </script>
 </html>
